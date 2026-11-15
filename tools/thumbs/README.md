@@ -68,12 +68,12 @@ corrupted or glitched cells. The chosen candidate is `cunet_n1_then_n-1_tta` (st
 box-downscaled to 1x and compared with the original JPEG over the 32 non-black cels: PSNR 31.27 dB mean (27.11 min),
 SSIM 0.910 mean, CIEDE2000 1.28 mean, 8-px JPEG block-edge ratio 1.031 (original 1.114).
 
-`run_all.sh` contains the absolute scratch paths of the original run; `regenerate.sh` is the self-contained
-version of the chosen pipeline.
+`run_all.sh` reproduces that candidate run (work directory `THUMBS_WORK`, default `./work`); `regenerate.sh` is
+the self-contained version of the chosen pipeline.
 
 ## How the game uses them
 
-`ChallengeScreen::DrawThumbnail` (`src/PvZ-Portable/src/Lawn/Widget/ChallengeScreen.cpp`) draws each cover into
+`ChallengeScreen::DrawThumbnail` (`PvZ-Portable/src/Lawn/Widget/ChallengeScreen.cpp` after the patch) draws each cover into
 the original logical rect (button x + 13, y + 4, 80x65) with the original cel index. With a presentation scale s
 above 1.02 it uses the sheet whose scale k is the smallest of 2, 3, 4 at or above s (4 beyond that), so the GPU
 minifies it by less than 2x or magnifies the 4x sheet. At s <= 1.02, and when a sheet is missing or does not
@@ -89,10 +89,10 @@ closes. A failed load (missing or wrong-size file) is not retried, except after 
 ## Regenerating
 
 ```sh
-# full run (needs the extracted waifu2x-ncnn-vulkan-20250915-macos release; GPU only on this Mac)
-zsh analysis/tools/thumbs/regenerate.sh <empty workdir> <path to waifu2x-ncnn-vulkan-20250915-macos>
+# full run (needs the extracted waifu2x-ncnn-vulkan-20250915-macos release; Vulkan/MoltenVK GPU)
+zsh tools/thumbs/regenerate.sh <empty workdir> <path to waifu2x-ncnn-vulkan-20250915-macos>
 # re-assemble from upscaled cells kept from an earlier run (skips the upscaler)
-UPSCALED=<dir with ch_NN.png and sv_NN.png> zsh analysis/tools/thumbs/regenerate.sh <empty workdir>
+UPSCALED=<dir with ch_NN.png and sv_NN.png> zsh tools/thumbs/regenerate.sh <empty workdir>
 cp <workdir>/out/*.png overrides/images/
 ```
 
@@ -107,4 +107,4 @@ differ slightly on other GPUs or driver versions.
 - `regenerate.sh`: the chosen pipeline end to end (steps 1-5).
 - `pak_list.py`: read-only main.pak lister/extractor (writes entries with `\` and `/` flattened to `__`).
 - `split_pad.py`, `assemble_eval.py`, `make_scaled_sheets.py`: steps 1, 4 and 5.
-- `run_all.sh`, `contact.py`, `finalize.py`: the original candidate run and comparison images (scratch paths).
+- `run_all.sh`, `contact.py`, `finalize.py`: the original candidate run and comparison images.

@@ -31,14 +31,14 @@
 
 ```bash
 # 1) 获取上游引擎（固定在提交 1e1742e）并打上本仓库的补丁
-scripts/get_engine.sh
+zsh scripts/get_engine.sh
 
 # 2) 把你自己的 Windows 游戏文件放到 ./game（或用 PVZ_GAME_DIR 指定），
 #    其中要有 main.pak、properties/LawnStrings.txt、fzse_gbk.ttf 和汉化的散装文件夹，
 #    95 版需要的是同一套数据。
 
 # 3) 构建两个应用（加 --install 会装进「应用程序」）
-scripts/build_apps.sh [--install]
+zsh scripts/build_apps.sh [--install]
 ```
 
 可选：把自己做的图标放到 `icons/orig.icns`、`icons/p95.icns`；把用 `tools/thumbs/regenerate.sh` 生成的高清封面放到 `overrides/images/`。

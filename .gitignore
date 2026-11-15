@@ -1,0 +1,10 @@
+# never commit game data or build output
+game/
+PvZ-Portable/
+build/
+dist/
+overrides/images/*.png
+icons/
+*.pak
+*.exe
+.DS_Store

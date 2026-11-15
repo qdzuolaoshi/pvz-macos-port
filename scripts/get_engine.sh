@@ -1,6 +1,6 @@
 #!/bin/zsh
 # Fetch upstream PvZ-Portable at the commit the macOS patch was made against and apply the patch.
-# usage: scripts/get_engine.sh [target_dir]      (default <repo>/PvZ-Portable)
+# usage: zsh scripts/get_engine.sh [target_dir]      (default <repo>/PvZ-Portable)
 set -euo pipefail
 ROOT="${0:A:h:h}"
 DST="${1:-$ROOT/PvZ-Portable}"

@@ -4,7 +4,7 @@
 # Windows game data (default ./game; it must contain main.pak, properties/LawnStrings.txt, fzse_gbk.ttf and the
 # translation's loose folders). No game data is part of this repository.
 #
-# usage: scripts/build_apps.sh [--install]
+# usage: zsh scripts/build_apps.sh [--install]
 #   PVZ_SRC=<dir>       engine checkout (default <repo>/PvZ-Portable)
 #   PVZ_GAME_DIR=<dir>  game data folder (default <repo>/game)
 #   --install   also copy both apps into /Applications (replacing earlier copies)

@@ -35,7 +35,7 @@ and a deliberately light acceptance process. Paths such as `src/...` refer to th
      byte-for-byte identical in behaviour.
 3. **Data compatibility.** See section 3. This is usually the largest one-off cost for old or translated builds.
 4. **macOS platform layer.** See section 4. This part is the same for every build; reuse the fork's code.
-5. **Package.** `scripts/build_apps.sh [--install]`:
+5. **Package.** `zsh scripts/build_apps.sh [--install]`:
    - Build the editions (Release, `PVZ_DEBUG=OFF`).
    - Assemble the resources: reproduce the effective Windows file set, then copy `overrides/` on top.
    - Convert `LawnStrings.txt` to UTF-8.
@@ -196,7 +196,7 @@ for large engine changes (a new rendering path or a new edition).
 4. Only what the change touched, compared against the baseline with `shotlogical` crops.
 
 **Release.**
-- Run `scripts/build_apps.sh --install`.
+- Run `zsh scripts/build_apps.sh --install`.
 - Launch each installed app through LaunchServices (`open -n -g -W --env ... --args -savedir=<scratch>`), check
   `codesign --verify --deep`, then check Launchpad.
 - Update `PROJECT_CONTEXT.md` and the changelog (the shared root uses the lock), move superseded files to the Trash, and
